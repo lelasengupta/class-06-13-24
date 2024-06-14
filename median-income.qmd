@@ -1,0 +1,38 @@
+---
+title: "Median Income in Massachusetts"
+format: html
+author: Lela Sengupta
+execute:
+  echo: FALSE
+---
+
+```{r}
+#| label: Setup
+#| message: FALSE
+
+library(tidyverse)
+library(tidycensus)
+```
+
+```{r}
+#| label: plot
+#| message: FALSE
+
+mass <- read_csv("mass-tracts.csv")
+mass |> drop_na() |>
+  ggplot(aes(x = med_income, 
+             fill = fct_reorder(race, med_income, median))) +
+    geom_density(alpha = 0.75, bw = 25000) + 
+  labs(title = "Median Income from Massachusetts Census Tracts",
+       subtitle = "The richest tracts are White",
+       x = "Median income", y = NULL,
+       fill = "Race",
+       caption = "The race of each tract is determined by the most numerous racial group\npresent in that tract. Data from the American Community survey 2022.") +
+  scale_x_continuous(labels = scales::label_dollar())+ 
+  scale_y_continuous(labels = NULL) +
+  theme_bw() + 
+  theme(axis.ticks.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        panel.border = element_blank()) 
+```
+

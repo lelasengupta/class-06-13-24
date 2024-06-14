@@ -3,3 +3,7 @@
 .RData
 .Ruserdata
 .class-06-13-24
+*Rproj
+mass-tracts.csv
+.DS_Store
+median-income_files/
