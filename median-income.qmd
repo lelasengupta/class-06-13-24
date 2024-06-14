@@ -22,7 +22,7 @@ mass <- read_csv("mass-tracts.csv")
 mass |> drop_na() |>
   ggplot(aes(x = med_income, 
              fill = fct_reorder(race, med_income, median))) +
-    geom_density(alpha = 0.75, bw = 25000) + 
+    geom_density(alpha = 0.75, adjust = 2) + 
   labs(title = "Median Income from Massachusetts Census Tracts",
        subtitle = "The richest tracts are White",
        x = "Median income", y = NULL,
@@ -33,6 +33,7 @@ mass |> drop_na() |>
   theme_bw() + 
   theme(axis.ticks.y = element_blank(),
         axis.ticks.x = element_blank(),
-        panel.border = element_blank()) 
+        panel.border = element_blank()
+        ) 
 ```
 
